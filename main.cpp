@@ -1,3 +1,6 @@
+//comsc 210 | ali saeed \ midterm 2
+
+
 #include <iostream>
 #include <fstream>
 #include <string>
