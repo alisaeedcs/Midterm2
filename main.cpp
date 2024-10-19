@@ -12,7 +12,7 @@ private:
         string data; //switch to string so we can put a nmae in
         Node* prev;
         Node* next;
-        Node(int val, Node* p = nullptr, Node* n = nullptr) {
+        Node(string val, Node* p = nullptr, Node* n = nullptr) {
             data = val; 
             prev = p;
             next = n;
@@ -25,7 +25,7 @@ private:
 public:
     DoublyLinkedList() { head = nullptr; tail = nullptr; }
 
-    void insert_after(int value, int position) {
+    void insert_after(string value, int position) {
         if (position < 0) {
             cout << "Position must be >= 0." << endl;
             return;
@@ -56,7 +56,7 @@ public:
         temp->next = newNode;
     }
 
-    void delete_val(int value) {
+    void delete_val(string value) { //change front int to string
         if (!head) return;
 
         Node* temp = head;
@@ -116,7 +116,7 @@ public:
         delete temp;
     }
 
-    void push_back(int v) {
+    void push_back(string v) {
         Node* newNode = new Node(v);
         if (!tail)
             head = tail = newNode;
@@ -127,7 +127,7 @@ public:
         }
     }
     
-    void push_front(int v) {
+    void push_front(string v) {
         Node* newNode = new Node(v);
         if (!head)
             head = tail = newNode;
@@ -208,18 +208,31 @@ public:
 
 int main() {
     cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS;  // dummy statement to avoid compiler warning
-
+    cout << endl;
     srand(time(0)); //random seed i think it lets it so that not repeated same number based on time of day
+  
+    //vector of names
     ifstream namefile("names.txt");
     vector<string> names;
     string name;
     while (namefile >> name) {
         names.push_back(name);
     }
-    //vector of names
+    
+    //make list of line
+    DoublyLinkedList line;
+
+    //start sim
+    cout << "Store opens:" << endl;
+    for (int i = 0; i < 5; i++) {
+        string random_name = names[rand() % names.size()];
+        line.push_back(random_name);
+        cout << "\t" << random_name << " joins the line" << endl;
+    }
+
 
     for (int i = 2; i < 20; i++) { //19 sims
-
+        cout << "Time step #" << i << ":" << endl;
     }
     
     return 0;
