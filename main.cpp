@@ -25,6 +25,17 @@ private:
 public:
     DoublyLinkedList() { head = nullptr; tail = nullptr; }
 
+    //new function to get the name
+    string first_name() {
+        if (!head) {
+            cout << "List is empty!" << endl;
+            return;
+        }
+        else {
+            return head->data;
+        }
+    };
+
     void insert_after(string value, int position) {
         if (position < 0) {
             cout << "Position must be >= 0." << endl;
@@ -233,7 +244,21 @@ int main() {
 
     for (int i = 2; i < 20; i++) { //19 sims
         cout << "Time step #" << i << ":" << endl;
+
+        //someone being served
+        if (rand() % 100 + 1 <= 40) {
+            cout << line.first_name() << " is served" << endl;
+            line.pop_front();
+        }
+
+        //new customer joins line (at end)
+        if (rand() % 100 + 1 <= 60) {
+            cout << names[rand() % names.size()] << " i" << endl;
+            line.pop_front();
+        }
+
     }
+
     
     return 0;
 }
