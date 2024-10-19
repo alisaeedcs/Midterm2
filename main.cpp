@@ -47,6 +47,32 @@ public:
         }
     }
 
+    //length of line
+    int length() {
+        int i = 0;
+        Node* current = head;
+
+        while (current) {
+            i++;
+            current->next;
+        }
+
+        return i;
+    }
+
+    //get name by position
+    string name_by_pos(int pos) {
+        if (pos < 0) {
+            cout << "Position can't be negative" << endl;
+        }
+
+        Node* current = head;
+        for (int i = 0; i < pos && current; i++) {
+            current = current->next;
+        }
+        //return name of node
+        return current->data;
+    }
 
 
     void insert_after(string value, int position) {
@@ -279,9 +305,21 @@ int main() {
 
         //random person leaving 10%
         if (rand() % 100 + 1 <= 10) {
-            cout << "\t" << line.last_name() << " (at the rear) left the line" << endl;
-            line.pop_back();
+            int leaving_customer = rand() % line.length();
+            cout << "\t" << line.name_by_pos(leaving_customer) << " left the line" << endl;
+            line.delete_pos(leaving_customer);
         }        
+
+
+        //vip joing line 10%
+        if (rand() % 100 + 1 <= 10) {
+            string new_customer = names[rand() % names.size()];
+            cout << "\t" << new_customer << " (VIP) joins the front of the line" << endl;
+            line.push_front(new_customer);
+        }        
+
+        cout << "\tResulting line: " << endl;
+        line.
 
     }
 
