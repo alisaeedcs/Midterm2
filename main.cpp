@@ -1,4 +1,7 @@
 #include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
 using namespace std;
 
 const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
@@ -6,7 +9,7 @@ const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
 class DoublyLinkedList {
 private:
     struct Node {
-        int data;
+        string data; //switch to string so we can put a nmae in
         Node* prev;
         Node* next;
         Node(int val, Node* p = nullptr, Node* n = nullptr) {
@@ -183,7 +186,7 @@ public:
             return;
         }
         while (current) {
-            cout << current->data << " ";
+            cout << current->data << endl; //switch to endl
             current = current->next;
         }
         cout << endl;
@@ -206,6 +209,18 @@ public:
 int main() {
     cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS;  // dummy statement to avoid compiler warning
 
+    srand(time(0)); //random seed i think it lets it so that not repeated same number based on time of day
+    ifstream namefile("names.txt");
+    vector<string> names;
+    string name;
+    while (namefile >> name) {
+        names.push_back(name);
+    }
+    //vector of names
+
+    for (int i = 2; i < 20; i++) { //19 sims
+
+    }
     
     return 0;
 }
