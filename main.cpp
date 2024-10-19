@@ -29,12 +29,25 @@ public:
     string first_name() {
         if (!head) {
             cout << "List is empty!" << endl;
-            return;
+            return " ";
         }
         else {
             return head->data;
         }
-    };
+    }
+
+
+    string last_name() {
+        if (!tail) {
+            cout << "List is empty!" << endl;
+            return " ";
+        }
+        else {
+            return tail->data;
+        }
+    }
+
+
 
     void insert_after(string value, int position) {
         if (position < 0) {
@@ -197,7 +210,7 @@ public:
             return;
         }
         while (current) {
-            cout << current->data << endl; //switch to endl
+            cout << "\t\t" << current->data << endl; //switch to endl
             current = current->next;
         }
         cout << endl;
@@ -245,17 +258,30 @@ int main() {
     for (int i = 2; i < 20; i++) { //19 sims
         cout << "Time step #" << i << ":" << endl;
 
-        //someone being served
+        //someone being served 40%
         if (rand() % 100 + 1 <= 40) {
-            cout << line.first_name() << " is served" << endl;
+            cout << "\t" << line.first_name() << " is served" << endl;
             line.pop_front();
         }
 
-        //new customer joins line (at end)
+        //new customer joins line (at end) 60%
         if (rand() % 100 + 1 <= 60) {
-            cout << names[rand() % names.size()] << " i" << endl;
-            line.pop_front();
+            string new_customer = names[rand() % names.size()];
+            cout << "\t" << new_customer << " joined the line" << endl;
+            line.push_back(new_customer);
         }
+
+        //customer at end leaving 20%
+        if (rand() % 100 + 1 <= 20) {
+            cout << "\t" << line.last_name() << " (at the rear) left the line" << endl;
+            line.pop_back();
+        }
+
+        //random person leaving 10%
+        if (rand() % 100 + 1 <= 10) {
+            cout << "\t" << line.last_name() << " (at the rear) left the line" << endl;
+            line.pop_back();
+        }        
 
     }
 
