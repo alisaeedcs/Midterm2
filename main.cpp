@@ -54,7 +54,7 @@ public:
 
         while (current) {
             i++;
-            current->next;
+            current = current->next;
         }
 
         return i;
@@ -64,8 +64,12 @@ public:
     string name_by_pos(int pos) {
         if (pos < 0) {
             cout << "Position can't be negative" << endl;
+            return " ";
         }
-
+        if (pos >= length()) { //had a segmentation fault that i believe stemmed from this
+            cout << "Position exceeds list size." << endl;
+            return " ";
+        }
         Node* current = head;
         for (int i = 0; i < pos && current; i++) {
             current = current->next;
@@ -281,7 +285,7 @@ int main() {
     }
 
 
-    for (int i = 2; i < 20; i++) { //19 sims
+    for (int i = 2; i <= 20; i++) { //19 sims
         cout << "Time step #" << i << ":" << endl;
 
         //someone being served 40%
@@ -319,7 +323,7 @@ int main() {
         }        
 
         cout << "\tResulting line: " << endl;
-        line.
+        line.print();
 
     }
 
